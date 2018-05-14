@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="layout :: head (title='Home')">
 </head>
 <body>
-Init
+<h1>Home page</h1>
+
+<th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
 </html>

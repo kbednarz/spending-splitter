@@ -1,12 +1,45 @@
 <!doctype html>
 <html lang="en">
+
 <head th:replace="layout :: head (title='Dashboard')">
 </head>
-<body>
-<h1>Dashboard</h1>
-Hello <span th:text="${user.name}">Username</span>
 
-<span th:each="group: ${userGroups}"><span th:text="${group.name}"></span> </span>
-<th:block th:replace="layout :: scripts">Scripts</th:block>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+        <a class="navbar-brand" href="#">SPENDING SPLITTER</a>
+    </nav>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <nav class="col-md-3 d-md-block bg-light sidebar border-right">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                                Dashboard
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-md-9">
+                <h1 class="text-center p-3">Dashboard</h1>
+                <p>Hello
+                    <span th:text="${user.name}">Username</span>
+                </p>
+
+                <span th:each="group: ${userGroups}">
+                    <span th:text="${group.name}"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
+
 </html>

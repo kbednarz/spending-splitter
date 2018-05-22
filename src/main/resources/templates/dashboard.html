@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head th:replace="layout :: head (title='Home')">
+<head th:replace="layout :: head (title='Dashboard')">
 </head>
 <body>
 <h1>Dashboard</h1>
+Hello <span th:text="${user.name}">Username</span>
 
+<span th:each="group: ${userGroups}"><span th:text="${group.name}"></span> </span>
 <th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
 </html>

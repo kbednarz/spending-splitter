@@ -1,6 +1,6 @@
 package com.github.kbednarz.spendingsplitter.security.domain;
 
-import com.github.kbednarz.spendingsplitter.group.domain.Group;
+import com.github.kbednarz.spendingsplitter.group.domain.CommonGroup;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,11 +25,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "user_group",
-            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-    private final Set<Group> groups = new HashSet<>();
+            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "common_group_id"))
+    private final Set<CommonGroup> commonGroups = new HashSet<>();
 
-    public Set<Group> getGroups() {
-        return groups;
+    public Set<CommonGroup> getCommonGroups() {
+        return commonGroups;
     }
 
     public Collection<Role> getRoles() {

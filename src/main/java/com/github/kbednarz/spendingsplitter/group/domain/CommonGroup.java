@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Group {
+public class CommonGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class Group {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "commonGroups")
     private Set<User> members = new HashSet<>();
 
     public Long getId() {

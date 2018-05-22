@@ -1,10 +1,10 @@
 package com.github.kbednarz.spendingsplitter;
 
-import com.github.kbednarz.spendingsplitter.security.domain.Role;
-import com.github.kbednarz.spendingsplitter.security.domain.User;
-import com.github.kbednarz.spendingsplitter.security.repository.RoleRepository;
-import com.github.kbednarz.spendingsplitter.security.repository.UserRepository;
-import com.github.kbednarz.spendingsplitter.security.service.UserService;
+import com.github.kbednarz.spendingsplitter.domain.Role;
+import com.github.kbednarz.spendingsplitter.domain.User;
+import com.github.kbednarz.spendingsplitter.repository.RoleRepository;
+import com.github.kbednarz.spendingsplitter.repository.UserRepository;
+import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;

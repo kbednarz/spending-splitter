@@ -1,9 +1,9 @@
-package com.github.kbednarz.spendingsplitter.security.service;
+package com.github.kbednarz.spendingsplitter.service;
 
-import com.github.kbednarz.spendingsplitter.security.domain.Role;
-import com.github.kbednarz.spendingsplitter.security.domain.User;
-import com.github.kbednarz.spendingsplitter.security.repository.RoleRepository;
-import com.github.kbednarz.spendingsplitter.security.repository.UserRepository;
+import com.github.kbednarz.spendingsplitter.domain.Role;
+import com.github.kbednarz.spendingsplitter.domain.User;
+import com.github.kbednarz.spendingsplitter.repository.RoleRepository;
+import com.github.kbednarz.spendingsplitter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

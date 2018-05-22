@@ -1,6 +1,6 @@
-package com.github.kbednarz.spendingsplitter.security.repository;
+package com.github.kbednarz.spendingsplitter.repository;
 
-import com.github.kbednarz.spendingsplitter.security.domain.Role;
+import com.github.kbednarz.spendingsplitter.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

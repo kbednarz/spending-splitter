@@ -1,4 +1,4 @@
-package com.github.kbednarz.spendingsplitter.security.domain;
+package com.github.kbednarz.spendingsplitter.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 

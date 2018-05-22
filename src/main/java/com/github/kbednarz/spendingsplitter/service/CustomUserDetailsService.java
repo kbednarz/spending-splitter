@@ -1,8 +1,8 @@
-package com.github.kbednarz.spendingsplitter.security.service;
+package com.github.kbednarz.spendingsplitter.service;
 
-import com.github.kbednarz.spendingsplitter.security.dao.UserDAO;
-import com.github.kbednarz.spendingsplitter.security.domain.User;
-import com.github.kbednarz.spendingsplitter.security.repository.UserRepository;
+import com.github.kbednarz.spendingsplitter.dao.UserDAO;
+import com.github.kbednarz.spendingsplitter.domain.User;
+import com.github.kbednarz.spendingsplitter.repository.UserRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

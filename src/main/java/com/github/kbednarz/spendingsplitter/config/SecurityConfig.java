@@ -1,6 +1,6 @@
-package com.github.kbednarz.spendingsplitter.security.config;
+package com.github.kbednarz.spendingsplitter.config;
 
-import com.github.kbednarz.spendingsplitter.security.service.CustomUserDetailsService;
+import com.github.kbednarz.spendingsplitter.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

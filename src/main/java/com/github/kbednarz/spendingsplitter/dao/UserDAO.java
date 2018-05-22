@@ -1,7 +1,7 @@
-package com.github.kbednarz.spendingsplitter.security.dao;
+package com.github.kbednarz.spendingsplitter.dao;
 
-import com.github.kbednarz.spendingsplitter.security.domain.Role;
-import com.github.kbednarz.spendingsplitter.security.domain.User;
+import com.github.kbednarz.spendingsplitter.domain.Role;
+import com.github.kbednarz.spendingsplitter.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,4 @@
-package com.github.kbednarz.spendingsplitter.security.domain;
-
-import com.github.kbednarz.spendingsplitter.group.domain.CommonGroup;
+package com.github.kbednarz.spendingsplitter.domain;
 
 import javax.persistence.*;
 import java.util.Collection;

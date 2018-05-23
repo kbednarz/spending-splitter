@@ -5,24 +5,24 @@
 </head>
 
 <body>
-<nav th:replace="layout :: navbar">Navbar</nav>
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <nav th:replace="layout :: sidebar">Sidebar</nav>
+    <nav th:replace="layout :: navbar">Navbar</nav>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <nav th:replace="layout :: sidebar">Sidebar</nav>
 
-        <div class="col-md-9">
-            <h1 class="text-center p-3">Dashboard</h1>
-            <p>Hello
-                <span th:text="${user.name}">Username</span>
-            </p>
-
-            <span th:each="group: ${userGroups}">
-                    <span th:text="${group.name}"></span>
-                </span>
+            <div class="col-md-9">
+                <h1 class="text-center p-3">Groups</h1>
+                <div class="card">
+                    <div th:each="group: ${allGroups}" class="card-body">
+                        <span th:text="${group.name}">Group name</span>
+                        <span th:if="${#lists.contains(userGroups, group)}" class="badge badge-info">Member</span>
+                        <button th:if="${not #lists.contains(userGroups, group)}" type="button" class="btn btn-success">Join</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<th:block th:replace="layout :: scripts">Scripts</th:block>
+    <th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
 
 </html>

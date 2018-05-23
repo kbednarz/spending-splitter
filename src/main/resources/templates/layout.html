@@ -11,6 +11,27 @@
 <body>
 <h1>Layout page</h1>
 
+<nav th:fragment="sidebar" class="col-md-3 d-md-block bg-light sidebar border-right">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    Dashboard
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/groups}">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    Groups
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <th:block th:fragment="scripts">
     <script type="text/javascript" th:src="@{/js/jquery-slim.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>

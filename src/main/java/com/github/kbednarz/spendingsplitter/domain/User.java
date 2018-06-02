@@ -30,6 +30,10 @@ public class User {
         return commonGroups;
     }
 
+    public void addCommonGroup(CommonGroup group) {
+        commonGroups.add(group);
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }

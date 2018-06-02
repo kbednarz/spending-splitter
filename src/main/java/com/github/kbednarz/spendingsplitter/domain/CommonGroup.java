@@ -40,4 +40,8 @@ public class CommonGroup {
     public void setMembers(Set<User> members) {
         this.members = members;
     }
+
+    public void addMember(User member) {
+        members.add(member);
+    }
 }

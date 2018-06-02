@@ -17,6 +17,9 @@ public class CommonGroup {
     @ManyToMany(mappedBy = "commonGroups")
     private Set<User> members = new HashSet<>();
 
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="commonGroup")
+    private final Set<Spending> spendings = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class CommonGroup {
 
     public void addMember(User member) {
         members.add(member);
+    }
+
+    public Set<Spending> getSpendings() {
+        return spendings;
+    }
+
+    public void addSpending(Spending spending) {
+        spendings.add(spending);
     }
 }

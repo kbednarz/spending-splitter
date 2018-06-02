@@ -26,6 +26,9 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "common_group_id"))
     private final Set<CommonGroup> commonGroups = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "paidByUser")
+    private final Set<Spending> spendings = new HashSet<>();
+
     public Set<CommonGroup> getCommonGroups() {
         return commonGroups;
     }
@@ -64,5 +67,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Spending> getSpendings() {
+        return spendings;
+    }
+
+    public void addSpending(Spending spending) {
+        spendings.add(spending);
     }
 }

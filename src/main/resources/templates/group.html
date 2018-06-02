@@ -5,27 +5,32 @@
 </head>
 
 <body>
-<nav th:replace="layout :: navbar">Navbar</nav>
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <nav th:replace="layout :: sidebar">Sidebar</nav>
+    <nav th:replace="layout :: navbar">Navbar</nav>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <nav th:replace="layout :: sidebar">Sidebar</nav>
 
-        <div class="col-md-9">
-            <h1 class="text-center p-3">Group: <span th:text="${group.name}"></span></h1>
-            <div class="card">
-                <div th:each="group: ${allGroups}" class="card-body">
-                    <span th:text="${group.name}">Group name</span>
-                    <span th:if="${#lists.contains(userGroups, group)}" class="badge badge-info">Member</span>
-                    <form th:if="${not #lists.contains(userGroups, group)}" method="POST" th:action="@{/groups/join}">
-                        <input type="hidden" name="groupId" th:value="${group.id}" />
-                        <button type="submit" class="btn btn-success">Join</button>
-                    </form>
+            <div class="col-md-9">
+                <h1 class="text-center p-3">Group:
+                    <span th:text="${group.name}"></span>
+                </h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        Members: 
+                        <span th:each="member: ${group.members}" th:text="${member.username}" class="badge badge-info">Username</span>
+                    </div>
+                    <div class="col-md-12">
+                        Spendings:
+                        <span th:each="spending: ${group.spendings}" th:text="${spending.amount}" class="badge badge-info">Amount</span>
+                    </div>
+                    <div class="col-md-12">
+                        Recent activity:
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<th:block th:replace="layout :: scripts">Scripts</th:block>
+    <th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
 
 </html>

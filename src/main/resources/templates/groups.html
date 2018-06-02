@@ -15,7 +15,7 @@
                 <div class="card">
                     <div th:each="group: ${allGroups}" class="card-body">
                         <div th:if="${#lists.contains(userGroups, group)}">
-                            <a th:href="@{|/groups/show/${group.id}|}" th:text="${group.name}"></a>
+                            <a th:href="@{|/groups/show/${group.id}|}" th:text="${group.name}">Group name</a>
                             <span class="badge badge-info">
                                 Member
                             </span>

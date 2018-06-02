@@ -5,14 +5,9 @@ import com.github.kbednarz.spendingsplitter.repository.CommonGroupRepository;
 import com.github.kbednarz.spendingsplitter.service.CommonGroupService;
 import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -31,8 +26,22 @@ public class GroupController {
     @Autowired
     UserService userService;
 
+    @GetMapping("show/{id}")
+    public String show(@PathVariable Long id, Model model, Principal principal) throws Exception {
+        model.addAttribute("user", principal);
+        Optional<CommonGroup> group = commonGroupRepository.findById(id);
+
+        if (!group.isPresent()) {
+            throw new Exception("Group does not exist");
+        }
+
+        model.addAttribute("group", group.get());
+
+        return "group";
+    }
+
     @GetMapping("list")
-    public String dashboard(Model model, Principal principal) {
+    public String list(Model model, Principal principal) {
         model.addAttribute("user", principal);
         Set<CommonGroup> userGroups = commonGroupRepository.findByMembersUsername(principal.getName());
         model.addAttribute("userGroups", userGroups);

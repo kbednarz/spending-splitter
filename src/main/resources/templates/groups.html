@@ -14,12 +14,20 @@
                 <h1 class="text-center p-3">Groups</h1>
                 <div class="card">
                     <div th:each="group: ${allGroups}" class="card-body">
-                        <span th:text="${group.name}">Group name</span>
-                        <span th:if="${#lists.contains(userGroups, group)}" class="badge badge-info">Member</span>
-                        <form th:if="${not #lists.contains(userGroups, group)}" method="POST" th:action="@{/groups/join}">
-                            <input type="hidden" name="groupId" th:value="${group.id}" />
-                            <button type="submit" class="btn btn-success">Join</button>
-                        </form>
+                        <div th:if="${#lists.contains(userGroups, group)}">
+                            <a th:href="@{|/groups/show/${group.id}|}" th:text="${group.name}"></a>
+                            <span class="badge badge-info">
+                                Member
+                            </span>
+                        </div>
+                        <div th:if="${not #lists.contains(userGroups, group)}">
+                            <span th:text="${group.name}">Group name</span>
+                            <form method="POST" th:action="@{/groups/join}">
+                                <input type="hidden" name="groupId" th:value="${group.id}" />
+                                <button type="submit" class="btn btn-success">Join</button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>

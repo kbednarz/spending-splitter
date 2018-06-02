@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="layout :: head (title='Group')">
+</head>
+
+<body>
+<nav th:replace="layout :: navbar">Navbar</nav>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <nav th:replace="layout :: sidebar">Sidebar</nav>
+
+        <div class="col-md-9">
+            <h1 class="text-center p-3">Group: <span th:text="${group.name}"></span></h1>
+            <div class="card">
+                <div th:each="group: ${allGroups}" class="card-body">
+                    <span th:text="${group.name}">Group name</span>
+                    <span th:if="${#lists.contains(userGroups, group)}" class="badge badge-info">Member</span>
+                    <form th:if="${not #lists.contains(userGroups, group)}" method="POST" th:action="@{/groups/join}">
+                        <input type="hidden" name="groupId" th:value="${group.id}" />
+                        <button type="submit" class="btn btn-success">Join</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="layout :: scripts">Scripts</th:block>
+</body>
+
+</html>

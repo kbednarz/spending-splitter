@@ -16,7 +16,10 @@
                     <div th:each="group: ${allGroups}" class="card-body">
                         <span th:text="${group.name}">Group name</span>
                         <span th:if="${#lists.contains(userGroups, group)}" class="badge badge-info">Member</span>
-                        <button th:if="${not #lists.contains(userGroups, group)}" type="button" class="btn btn-success">Join</button>
+                        <form th:if="${not #lists.contains(userGroups, group)}" method="POST" th:action="@{/groups/join}">
+                            <input type="hidden" name="groupId" th:value="${group.id}" />
+                            <button type="submit" class="btn btn-success">Join</button>
+                        </form>
                     </div>
                 </div>
             </div>

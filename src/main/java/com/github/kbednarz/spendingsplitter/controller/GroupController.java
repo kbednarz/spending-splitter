@@ -41,7 +41,7 @@ public class GroupController {
     }
 
     @PostMapping("join")
-    public ResponseEntity joinGroup(@RequestParam(required = true) Long groupId, Principal principal) throws Exception {
+    public String joinGroup(@RequestParam(required = true) Long groupId, Principal principal) throws Exception {
         Optional<CommonGroup> group = commonGroupRepository.findById(groupId);
         if (!group.isPresent()) {
             throw new Exception("Group with given id does not exist");
@@ -49,7 +49,7 @@ public class GroupController {
 
         commonGroupService.assignUserToGroup(userService.getUserForPrincipal(principal), group.get());
 
-        return new ResponseEntity(HttpStatus.OK);
+        return "redirect:list";
     }
 
 }

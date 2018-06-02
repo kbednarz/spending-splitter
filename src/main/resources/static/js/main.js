@@ -1,10 +1,11 @@
-var test = function () {
+var joinGroup = function (id) {
     console.log("test");
+    console.log(id);
     $.ajax({
         type: 'POST',
-        url: 'groups/join',
+        url: '/groups/join',
         data: {
-            'id': 1
+            'id': id
         }
     });
 };

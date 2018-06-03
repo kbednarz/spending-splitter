@@ -16,7 +16,7 @@ public class Spending {
     User paidByUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    CommonGroup commonGroup;
+    CommonGroup group;
 
     @Temporal(TemporalType.TIMESTAMP)
     Date date;
@@ -41,12 +41,12 @@ public class Spending {
         this.paidByUser = paidByUser;
     }
 
-    public CommonGroup getCommonGroup() {
-        return commonGroup;
+    public CommonGroup getGroup() {
+        return group;
     }
 
-    public void setCommonGroup(CommonGroup commonGroup) {
-        this.commonGroup = commonGroup;
+    public void setGroup(CommonGroup group) {
+        this.group = group;
     }
 
     public Date getDate() {

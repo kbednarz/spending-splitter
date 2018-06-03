@@ -16,15 +16,33 @@
                 </h1>
                 <div class="row">
                     <div class="col-md-12">
-                        Members: 
+                        Members:
                         <span th:each="member: ${group.members}" th:text="${member.username}" class="badge badge-info">Username</span>
                     </div>
                     <div class="col-md-12">
-                        Spendings:
-                        <span th:each="spending: ${group.spendings}" th:text="${spending.amount}" class="badge badge-info">Amount</span>
+                        Balance:
+                        <span th:text="${balance}">Your balance</span>
                     </div>
                     <div class="col-md-12">
-                        Recent activity:
+                        Spendings:
+                        <table>
+
+                            <head>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Paid by</th>
+                            </head>
+
+                            <body>
+                                <tr th:each="spending: ${group.spendings}">
+                                    <td th:text="${spending.date}">Date</td>
+                                    <td th:text="${spending.amount}">Amount</td>
+                                    <td th:text="${spending.paidByUser.username}">Paid by</td>
+                                </tr>
+                            </body>
+                        </table>
+
+                        <span th:text="${spending.amount}" class="badge badge-info">Amount</span>
                     </div>
                 </div>
             </div>

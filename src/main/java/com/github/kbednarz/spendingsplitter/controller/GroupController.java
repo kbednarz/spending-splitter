@@ -3,6 +3,7 @@ package com.github.kbednarz.spendingsplitter.controller;
 import com.github.kbednarz.spendingsplitter.domain.CommonGroup;
 import com.github.kbednarz.spendingsplitter.repository.CommonGroupRepository;
 import com.github.kbednarz.spendingsplitter.service.CommonGroupService;
+import com.github.kbednarz.spendingsplitter.service.SpendingService;
 import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class GroupController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SpendingService spendingService;
+
     @GetMapping("show/{id}")
     public String show(@PathVariable Long id, Model model, Principal principal) throws Exception {
         model.addAttribute("user", principal);
@@ -36,6 +40,10 @@ public class GroupController {
         }
 
         model.addAttribute("group", group.get());
+        model.addAttribute("balance", spendingService.calculateBalanceForGroupAndUser(
+                group.get(),
+                userService.getUserForPrincipal(principal)
+        ));
 
         return "group";
     }

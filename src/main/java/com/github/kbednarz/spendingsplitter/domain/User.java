@@ -1,5 +1,8 @@
 package com.github.kbednarz.spendingsplitter.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,6 +17,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @JsonIgnore
     private String password;
 
     @ManyToMany

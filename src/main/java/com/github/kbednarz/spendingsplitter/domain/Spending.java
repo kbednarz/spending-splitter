@@ -1,5 +1,7 @@
 package com.github.kbednarz.spendingsplitter.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,9 +14,11 @@ public class Spending {
     @Column(nullable = false)
     Double amount;
 
+    @JsonIgnoreProperties({"commonGroups", "roles", "spendings"})
     @ManyToOne(fetch = FetchType.LAZY)
     User paidByUser;
 
+    @JsonIgnoreProperties({"members", "spendings"})
     @ManyToOne(fetch = FetchType.LAZY)
     CommonGroup group;
 

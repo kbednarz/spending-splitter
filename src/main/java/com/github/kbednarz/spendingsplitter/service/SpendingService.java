@@ -1,6 +1,7 @@
 package com.github.kbednarz.spendingsplitter.service;
 
 import com.github.kbednarz.spendingsplitter.domain.CommonGroup;
+import com.github.kbednarz.spendingsplitter.domain.Spending;
 import com.github.kbednarz.spendingsplitter.domain.User;
 import com.github.kbednarz.spendingsplitter.repository.SpendingRepository;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class SpendingService {
@@ -16,6 +19,7 @@ public class SpendingService {
 
     @Autowired
     SpendingRepository spendingRepository;
+
 
     /**
      * Calculates cash balance within group for user
@@ -41,6 +45,17 @@ public class SpendingService {
         Double userBalance = userSpendings - avgBalance;
 
         return userBalance;
+    }
+
+    public Spending saveSpending(CommonGroup group, User paidByUser, Double amount){
+        Spending spending = new Spending();
+
+        spending.setAmount(amount);
+        spending.setDate(new Date());
+        spending.setGroup(group);
+        spending.setPaidByUser(paidByUser);
+
+        return spendingRepository.save(spending);
     }
 
 }

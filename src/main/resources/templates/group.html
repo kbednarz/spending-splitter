@@ -23,6 +23,11 @@
                         Balance:
                         <span th:text="${balance}">Your balance</span>
                     </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="openModal()">
+                            Add spending
+                        </button>
+                    </div>
                     <div class="col-md-12">
                         Spendings:
                         <table>
@@ -41,14 +46,41 @@
                                 </tr>
                             </body>
                         </table>
-
-                        <span th:text="${spending.amount}" class="badge badge-info">Amount</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addSpendingModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <form action="POST">
+                       
+                   </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var groupId = /*[[${group.id}]]*/ 1;
+    </script>
+
     <th:block th:replace="layout :: scripts">Scripts</th:block>
+    <script type="text/javascript" th:src="@{/js/group.js}"></script>
 </body>
 
 </html>

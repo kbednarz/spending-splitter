@@ -26,4 +26,12 @@ public class CommonGroupService {
         group.addMember(user);
         commonGroupRepository.save(group);
     }
+
+    public void deleteUserFromGroup(User user, CommonGroup group) {
+        user.getCommonGroups().remove(group);
+        userRepository.save(user);
+
+        group.getMembers().remove(user);
+        commonGroupRepository.save(group);
+    }
 }

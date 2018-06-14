@@ -19,6 +19,10 @@
                             <span class="badge badge-info">
                                 Member
                             </span>
+                            <form method="POST" th:action="@{/groups/leave}">
+                                <input type="hidden" name="groupId" th:value="${group.id}" />
+                                <button type="submit" class="btn btn-success">Leave</button>
+                            </form>
                         </div>
                         <div th:if="${not #lists.contains(userGroups, group)}">
                             <span th:text="${group.name}">Group name</span>

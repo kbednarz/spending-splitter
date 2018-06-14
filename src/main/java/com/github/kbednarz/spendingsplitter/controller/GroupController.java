@@ -69,4 +69,17 @@ public class GroupController {
         return "redirect:list";
     }
 
+    @PostMapping("leave")
+    public String leaveGroup(@RequestParam(required = true) Long groupId, Principal principal) throws Exception {
+        Optional<CommonGroup> group = commonGroupRepository.findById(groupId);
+        if (!group.isPresent()) {
+            throw new Exception("Group with given id does not exist");
+        }
+
+        commonGroupService.deleteUserFromGroup(userService.getUserForPrincipal(principal), group.get());
+
+        return "redirect:list";
+    }
+
+
 }

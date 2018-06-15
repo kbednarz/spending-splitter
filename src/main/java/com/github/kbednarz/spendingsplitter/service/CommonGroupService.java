@@ -34,4 +34,8 @@ public class CommonGroupService {
         group.getMembers().remove(user);
         commonGroupRepository.save(group);
     }
+
+    public CommonGroup save(CommonGroup group){
+        return commonGroupRepository.save(group);
+    }
 }

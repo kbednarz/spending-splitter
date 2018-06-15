@@ -11,38 +11,77 @@
             <nav th:replace="layout :: sidebar">Sidebar</nav>
 
             <div class="col">
-                <h1 class="text-center p-3">Groups</h1>
-                <div class="card col-md-3 p-0" th:each="group: ${allGroups}">
-                    <div class="card-header text-center">
-                        <h5 th:text="${group.name}">Group name</h5>
+                <div>
+                    <div class="text-center p-3">
+                        <span class="d-inline-flex align-items-center">
+                            <h1>
+                                Groups
+                            </h1>
+                            <i class="fa fa-2x fa-plus-circle text-success p-2" aria-hidden="true" onclick="openModal('#addGroupModal')"></i>
+                        </span>
                     </div>
-                    <div class="card-body">
-                        <div th:if="${#lists.contains(userGroups, group)}">
-                            <span class="badge badge-info">
-                                Member
-                            </span>
-                            <div class="form-inline">
-                                <a class="btn btn-sm btn-success mr-1" th:href="@{|/groups/show/${group.id}|}">Details</a>
-                                <form method="POST" th:action="@{/groups/leave}">
-                                    <input type="hidden" name="groupId" th:value="${group.id}" />
-                                    <button type="submit" class="btn btn-sm btn-danger">Leave</button>
-                                </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" th:each="group: ${allGroups}">
+                        <div class="card p-0">
+                            <div class="card-header text-center">
+                                <h5 th:text="${group.name}">Group name</h5>
+                            </div>
+                            <div class="card-body">
+                                <div th:if="${#lists.contains(userGroups, group)}">
+                                    <small>
+                                        You're already a member
+                                    </small>
+                                    <div class="form-inline mt-1">
+                                        <a class="btn btn-sm btn-success mr-1" th:href="@{|/groups/show/${group.id}|}">Details</a>
+                                        <form method="POST" th:action="@{/groups/leave}">
+                                            <input type="hidden" name="groupId" th:value="${group.id}" />
+                                            <button type="submit" class="btn btn-sm btn-danger">Leave</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div th:if="${not #lists.contains(userGroups, group)}">
+                                    <form method="POST" th:action="@{/groups/join}">
+                                        <input type="hidden" name="groupId" th:value="${group.id}" />
+                                        <button type="submit" class="btn btn-sm btn-default">Join</button>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
-                        <div th:if="${not #lists.contains(userGroups, group)}">
-                            <span th:text="${group.name}">Group name</span>
-                            <form method="POST" th:action="@{/groups/join}">
-                                <input type="hidden" name="groupId" th:value="${group.id}" />
-                                <button type="submit" class="btn btn-success">Join</button>
-                            </form>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" class="form-group" th:action="@{/groups/save}" th:object="${newGroup}">
+                    <div class="modal-body">
+                        Name:
+                        <input type="text" class="form-control form-inline" th:field="*{name}" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
     <th:block th:replace="layout :: scripts">Scripts</th:block>
+    <script type="text/javascript" th:src="@{/js/group.js}"></script>
 </body>
 
 </html>

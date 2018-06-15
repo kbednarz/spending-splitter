@@ -65,6 +65,7 @@ public class GroupController {
         Set<CommonGroup> userGroups = commonGroupRepository.findByMembersUsername(principal.getName());
         model.addAttribute("userGroups", userGroups);
         model.addAttribute("allGroups", commonGroupRepository.findAll());
+        model.addAttribute("newGroup", new CommonGroup());
         return "groups";
     }
 
@@ -92,5 +93,10 @@ public class GroupController {
         return "redirect:list";
     }
 
+    @PostMapping("save")
+    public String saveGroup(@ModelAttribute CommonGroup newGroup) {
+        commonGroupService.save(newGroup);
 
+        return "redirect:list";
+    }
 }

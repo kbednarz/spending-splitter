@@ -1,5 +1,5 @@
-function openModal() {
-    $('#addSpendingModal').modal('show');
+function openModal(selector) {
+    $(selector).modal('show');
 }
 
 function saveSpending() {

@@ -34,6 +34,7 @@
                             <thead>
                                 <th>Date</th>
                                 <th>Amount</th>
+                                <th>Description</th>
                                 <th>Paid by</th>
                                 <th class="text-right">Action</th>
                             </thead>
@@ -42,6 +43,7 @@
                                 <tr th:each="spending: ${spendings}">
                                     <td th:text="${#dates.format(spending.date, 'dd-MM-yyyy HH:mm')}">Date</td>
                                     <td th:text="${spending.amount}">Amount</td>
+                                    <td th:text="${spending.description}">Description</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
                                     <td class="text-right">
                                         <i th:onclick="'deleteSpending(\'' + ${spending.id} + '\');'" class="fa fa-minus-circle text-danger"></i>
@@ -68,8 +70,12 @@
                 </div>
                 <div class="modal-body">
                     <form action="POST" class="form-group">
-                        Amount:
-                        <input type="number" id="amount" class="form-control form-inline">
+                        <div> Amount:
+                            <input type="number" id="amount" class="form-control form-inline">
+                        </div>
+                        <div> Description:
+                            <input type="text" id="description" class="form-control form-inline">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

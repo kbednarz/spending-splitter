@@ -14,6 +14,8 @@ public class Spending {
     @Column(nullable = false)
     Double amount;
 
+    String description;
+
     @JsonIgnoreProperties({"commonGroups", "roles", "spendings"})
     @ManyToOne(fetch = FetchType.LAZY)
     User paidByUser;
@@ -59,5 +61,13 @@ public class Spending {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

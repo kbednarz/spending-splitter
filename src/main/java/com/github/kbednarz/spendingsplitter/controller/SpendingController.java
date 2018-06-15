@@ -32,11 +32,12 @@ public class SpendingController {
     UserService userService;
 
     @PostMapping
-    public String saveSpending(@RequestParam Long groupId, @RequestParam Double amount, Principal principal, Model model) {
+    public String saveSpending(@RequestParam Long groupId, @RequestParam Double amount,
+                               @RequestParam(required = false) String description, Principal principal, Model model) {
         CommonGroup group = commonGroupRepository.getOne(groupId);
         User paidByUser = userService.getUserForPrincipal(principal);
 
-        spendingService.saveSpending(group, paidByUser, amount);
+        spendingService.saveSpending(group, paidByUser, amount, description);
 
         List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
         model.addAttribute("spendings", spendings);

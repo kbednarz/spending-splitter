@@ -47,13 +47,14 @@ public class SpendingService {
         return userBalance;
     }
 
-    public Spending saveSpending(CommonGroup group, User paidByUser, Double amount){
+    public Spending saveSpending(CommonGroup group, User paidByUser, Double amount, String description) {
         Spending spending = new Spending();
 
         spending.setAmount(amount);
         spending.setDate(new Date());
         spending.setGroup(group);
         spending.setPaidByUser(paidByUser);
+        spending.setDescription(description);
 
         return spendingRepository.save(spending);
     }

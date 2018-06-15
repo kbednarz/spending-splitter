@@ -5,24 +5,25 @@
 </head>
 
 <body>
-<nav th:replace="layout :: navbar">Navbar</nav>
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <nav th:replace="layout :: sidebar">Sidebar</nav>
+    <nav th:replace="layout :: navbar">Navbar</nav>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <nav th:replace="layout :: sidebar">Sidebar</nav>
 
-        <div class="col">
-            <h1 class="text-center p-3">Dashboard</h1>
-            <p>Hello
-                <span th:text="${user.name}">Username</span>
-            </p>
-
-            <span th:each="group: ${userGroups}">
-                    <span th:text="${group.name}"></span>
-                </span>
+            <div class="col">
+                <h1 class="text-center p-3">Dashboard</h1>
+                <h2>Hello
+                    <b th:text="${user.name}">Username</b>!
+                </h2>
+                <p>
+                    You belongs to groups:
+                    <span th:each="group: ${userGroups}" th:text="${group.name}">
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
-</div>
-<th:block th:replace="layout :: scripts">Scripts</th:block>
+    <th:block th:replace="layout :: scripts">Scripts</th:block>
 </body>
 
 </html>

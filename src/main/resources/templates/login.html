@@ -13,10 +13,15 @@
                 <div class="col-md-6 offset-md-3">
                     <h2>Login</h2>
                     <hr>
+                    <p th:if="${param.logout}">
+                        You have been logged out.
+                    </p>
+                    <div class="form-control-feedback" th:if="${param.error}">
+                        <p class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Invalid username or password.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="row" th:if="${param.logout}">
-                You have been logged out.
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -28,13 +33,6 @@
                             </div>
                             <input type="text" name="username" class="form-control" id="username" placeholder="username" required autofocus>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback" th:if="${param.error}">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close"></i> Invalid username or password.
-                        </span>
                     </div>
                 </div>
             </div>

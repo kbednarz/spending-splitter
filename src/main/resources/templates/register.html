@@ -5,9 +5,10 @@
 </head>
 
 <body>
+    <nav th:replace="layout :: navbar">Navbar</nav>
 
     <div class="container">
-        <div class="row">
+        <div class="row pt-4">
             <div class="col-md-6 offset-md-3">
                 <h2>Register</h2>
                 <hr>
@@ -55,7 +56,7 @@
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-6 offset-md-3">
                     <button type="submit" class="btn btn-success">
-                        <i class="fa fa-sign-in"></i>Register</button>
+                        <i class="fa fa-user-plus"></i> Register</button>
                 </div>
             </div>
         </form>

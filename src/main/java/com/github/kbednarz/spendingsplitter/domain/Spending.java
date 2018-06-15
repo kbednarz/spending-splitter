@@ -24,6 +24,10 @@ public class Spending {
     @ManyToOne(fetch = FetchType.LAZY)
     CommonGroup group;
 
+    @JsonIgnoreProperties({"spendings"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    Category category;
+
     @Temporal(TemporalType.TIMESTAMP)
     Date date;
 
@@ -69,5 +73,13 @@ public class Spending {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

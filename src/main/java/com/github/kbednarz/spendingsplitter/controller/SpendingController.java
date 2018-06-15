@@ -10,9 +10,7 @@ import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -39,6 +37,20 @@ public class SpendingController {
         User paidByUser = userService.getUserForPrincipal(principal);
 
         spendingService.saveSpending(group, paidByUser, amount);
+
+        List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
+        model.addAttribute("spendings", spendings);
+
+        return "group :: #spending-body";
+    }
+
+    @DeleteMapping("{spendingId}")
+    public String deleteSpending(@PathVariable Long spendingId, Model model) {
+
+        Spending spending = spendingRepository.getOne(spendingId);
+        CommonGroup group = spending.getGroup();
+
+        spendingRepository.delete(spending);
 
         List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
         model.addAttribute("spendings", spendings);

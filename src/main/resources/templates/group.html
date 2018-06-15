@@ -44,7 +44,7 @@
                                     <td th:text="${spending.amount}">Amount</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
                                     <td class="text-right">
-                                        <i class="fa fa-minus-circle text-danger"></i>
+                                        <i th:onclick="'deleteSpending(\'' + ${spending.id} + '\');'" class="fa fa-minus-circle text-danger"></i>
                                         <i class="fa fa-pencil-square"></i>
                                     </td>
                                 </tr>
@@ -74,15 +74,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="saveSpending()">Add</button>
+                    <button type="button" class="btn btn-primary" th:onclick="'saveSpending(\'' + ${group.id} + '\');'">
+                        Add</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script th:inline="javascript">
-        var groupId = /*[[${group.id}]]*/ 1;
-    </script>
 
     <th:block th:replace="layout :: scripts">Scripts</th:block>
     <script type="text/javascript" th:src="@{/js/group.js}"></script>

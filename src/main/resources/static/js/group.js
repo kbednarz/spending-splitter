@@ -6,7 +6,7 @@ function closeModal(selector) {
     $(selector).modal('hide');
 }
 
-function saveSpending() {
+function saveSpending(groupId) {
     var amount = $('#amount').val();
 
     $.ajax({
@@ -20,5 +20,14 @@ function saveSpending() {
         $('#spending-body').replaceWith(response);
     }).always(function () {
         closeModal('#addSpendingModal');
+    });
+}
+
+function deleteSpending(spendingId) {
+    $.ajax({
+        url: "/api/spending/"+spendingId,
+        type: "delete",
+    }).done(function (response) {
+        $('#spending-body').replaceWith(response);
     });
 }

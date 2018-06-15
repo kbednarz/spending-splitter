@@ -29,12 +29,13 @@
                         <i class="fa fa-2x fa-plus-circle text-success p-2" aria-hidden="true" onclick="openModal()"></i>
                     </div>
                     <div class="col-md-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped mt-2">
 
                             <head>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Paid by</th>
+                                <th class="text-right">Action</th>
                             </head>
 
                             <body>
@@ -42,6 +43,10 @@
                                     <td th:text="${spending.date}">Date</td>
                                     <td th:text="${spending.amount}">Amount</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
+                                    <td class="text-right">
+                                        <i class="fa fa-minus-circle text-danger"></i>
+                                        <i class="fa fa-pencil-square"></i>
+                                    </td>
                                 </tr>
                             </body>
                         </table>
@@ -64,7 +69,7 @@
                 <div class="modal-body">
                     <form action="POST" class="form-group">
                         Amount:
-                        <input type="text" id="amount" class="form-control form-inline">
+                        <input type="number" id="amount" class="form-control form-inline">
                     </form>
                 </div>
                 <div class="modal-footer">

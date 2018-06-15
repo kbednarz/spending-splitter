@@ -1,7 +1,9 @@
 package com.github.kbednarz.spendingsplitter.controller;
 
 import com.github.kbednarz.spendingsplitter.domain.CommonGroup;
+import com.github.kbednarz.spendingsplitter.domain.Spending;
 import com.github.kbednarz.spendingsplitter.repository.CommonGroupRepository;
+import com.github.kbednarz.spendingsplitter.repository.SpendingRepository;
 import com.github.kbednarz.spendingsplitter.service.CommonGroupService;
 import com.github.kbednarz.spendingsplitter.service.SpendingService;
 import com.github.kbednarz.spendingsplitter.service.UserService;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,6 +34,9 @@ public class GroupController {
     @Autowired
     SpendingService spendingService;
 
+    @Autowired
+    SpendingRepository spendingRepository;
+
     @GetMapping("show/{id}")
     public String show(@PathVariable Long id, Model model, Principal principal) throws Exception {
         model.addAttribute("user", principal);
@@ -39,7 +46,11 @@ public class GroupController {
             throw new Exception("Group does not exist");
         }
 
-        model.addAttribute("group", group.get());
+        CommonGroup commonGroup = group.get();
+        List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(commonGroup);
+
+        model.addAttribute("group", commonGroup);
+        model.addAttribute("spendings", spendings);
         model.addAttribute("balance", spendingService.calculateBalanceForGroupAndUser(
                 group.get(),
                 userService.getUserForPrincipal(principal)

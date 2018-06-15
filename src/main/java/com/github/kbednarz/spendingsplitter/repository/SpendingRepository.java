@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Set;
 
 public interface SpendingRepository extends JpaRepository<Spending, Long> {
@@ -17,5 +18,5 @@ public interface SpendingRepository extends JpaRepository<Spending, Long> {
     @Query("SELECT SUM(s.amount) FROM Spending s WHERE s.group = :group AND s.paidByUser = :user")
     Double sumAmountByGroupAndPaidByUser(@Param("group") CommonGroup group, @Param("user") User user);
 
-    Set<Spending> findAllByGroupOrderByDateDesc(CommonGroup group);
+    List<Spending> findAllByGroupOrderByDateDesc(CommonGroup group);
 }

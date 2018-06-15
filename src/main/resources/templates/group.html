@@ -31,16 +31,16 @@
                     <div class="col-md-12">
                         <table class="table table-striped mt-2">
 
-                            <head>
+                            <thead>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Paid by</th>
                                 <th class="text-right">Action</th>
-                            </head>
+                            </thead>
 
-                            <body>
+                            <tbody id="spending-body">
                                 <tr th:each="spending: ${spendings}">
-                                    <td th:text="${spending.date}">Date</td>
+                                    <td th:text="${#dates.format(spending.date, 'dd-MM-yyyy HH:mm')}">Date</td>
                                     <td th:text="${spending.amount}">Amount</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
                                     <td class="text-right">
@@ -48,7 +48,7 @@
                                         <i class="fa fa-pencil-square"></i>
                                     </td>
                                 </tr>
-                            </body>
+                            </tbody>
                         </table>
                     </div>
                 </div>

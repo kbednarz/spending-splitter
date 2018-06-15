@@ -8,13 +8,18 @@ import com.github.kbednarz.spendingsplitter.repository.SpendingRepository;
 import com.github.kbednarz.spendingsplitter.service.SpendingService;
 import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("api/spending")
-public class SpendingRestController {
+public class SpendingController {
 
     @Autowired
     SpendingRepository spendingRepository;
@@ -28,17 +33,17 @@ public class SpendingRestController {
     @Autowired
     UserService userService;
 
-    @GetMapping("{id}")
-    public Spending getSpending(@PathVariable Long id) {
-        return spendingRepository.getOne(id);
-    }
-
     @PostMapping
-    public Spending saveSpending(@RequestParam Long groupId, @RequestParam Double amount, Principal principal) {
+    public String saveSpending(@RequestParam Long groupId, @RequestParam Double amount, Principal principal, Model model) {
         CommonGroup group = commonGroupRepository.getOne(groupId);
         User paidByUser = userService.getUserForPrincipal(principal);
 
-        return spendingService.saveSpending(group, paidByUser, amount);
+        spendingService.saveSpending(group, paidByUser, amount);
+
+        List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
+        model.addAttribute("spendings", spendings);
+
+        return "group :: #spending-body";
     }
 
 }

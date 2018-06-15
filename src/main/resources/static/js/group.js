@@ -2,19 +2,23 @@ function openModal(selector) {
     $(selector).modal('show');
 }
 
+function closeModal(selector) {
+    $(selector).modal('hide');
+}
+
 function saveSpending() {
     var amount = $('#amount').val();
-    
+
     $.ajax({
         url: "/api/spending",
         type: "post",
-        dataType : "json",
         data: {
             groupId: groupId,
             amount: amount
         }
     }).done(function (response) {
-        console.log('x')
-        console.log(response);
-    }).fail(function(){});
+        $('#spending-body').replaceWith(response);
+    }).always(function () {
+        closeModal('#addSpendingModal');
+    });
 }

@@ -1,7 +1,9 @@
 package com.github.kbednarz.spendingsplitter;
 
+import com.github.kbednarz.spendingsplitter.domain.Category;
 import com.github.kbednarz.spendingsplitter.domain.Role;
 import com.github.kbednarz.spendingsplitter.domain.User;
+import com.github.kbednarz.spendingsplitter.repository.CategoryRepository;
 import com.github.kbednarz.spendingsplitter.repository.RoleRepository;
 import com.github.kbednarz.spendingsplitter.repository.UserRepository;
 import com.github.kbednarz.spendingsplitter.service.UserService;
@@ -28,10 +30,14 @@ public class DatabaseBootstrap implements ApplicationRunner {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         initRoles();
         initAdmin();
+        initCategories();
     }
 
     private void initRoles() {
@@ -54,6 +60,19 @@ public class DatabaseBootstrap implements ApplicationRunner {
             admin.setPassword("admin");
 
             userService.create(admin, "ROLE_ADMIN", "ROLE_USER");
+        }
+    }
+
+    private void initCategories() {
+        String[] categoryNames = {"Grocery", "Restaurant", "Holiday"};
+
+        for (String categoryName : categoryNames) {
+            Category category = categoryRepository.findByName(categoryName);
+            if (category == null) {
+                category = new Category();
+                category.setName(categoryName);
+                categoryRepository.save(category);
+            }
         }
     }
 }

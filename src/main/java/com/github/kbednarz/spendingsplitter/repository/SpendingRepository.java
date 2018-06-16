@@ -19,4 +19,6 @@ public interface SpendingRepository extends JpaRepository<Spending, Long> {
     Double sumAmountByGroupAndPaidByUser(@Param("group") CommonGroup group, @Param("user") User user);
 
     List<Spending> findAllByGroupOrderByDateDesc(CommonGroup group);
+
+    List<Spending> findAllByPaidByUser(User user);
 }

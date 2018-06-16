@@ -7,7 +7,7 @@
 <body>
     <nav th:replace="layout :: navbar">Navbar</nav>
     <div class="container-fluid h-100">
-        <div class="row h-100">
+        <div class="row h-100 flex-nowrap">
             <nav th:replace="layout :: sidebar">Sidebar</nav>
 
             <div class="col">
@@ -20,10 +20,19 @@
                     <span th:each="group: ${userGroups}" th:text="${group.name}">
                     </span>
                 </p>
+                <div class="pt-4">
+                    <h3>Spendings by category:</h3>
+                    <div class="col-4">
+                        <canvas id="category-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <th:block th:replace="layout :: scripts">Scripts</th:block>
+    <script type="text/javascript" th:src="@{/js/chart.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dashboard.js}"></script>
+
 </body>
 
 </html>

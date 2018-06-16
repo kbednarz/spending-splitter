@@ -28,7 +28,7 @@ function saveSpending(groupId) {
     });
 }
 
-function deleteSpending(spendingId) {
+function deleteSpending(groupId, spendingId) {
     $.ajax({
         url: "/api/spending/" + spendingId,
         type: "delete",

@@ -46,7 +46,7 @@
                                     <td th:text="${spending.description}">Description</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
                                     <td class="text-right">
-                                        <i th:onclick="'deleteSpending(\'' + ${spending.id} + '\');'" class="fa fa-minus-circle text-danger"></i>
+                                        <i th:onclick="'deleteSpending(\'' + ${group.id} + '\',\'' + ${spending.id} + '\');'" class="fa fa-minus-circle text-danger"></i>
                                         <i class="fa fa-pencil-square"></i>
                                     </td>
                                 </tr>

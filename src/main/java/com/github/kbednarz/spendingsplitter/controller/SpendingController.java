@@ -41,6 +41,7 @@ public class SpendingController {
 
         List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
         model.addAttribute("spendings", spendings);
+        model.addAttribute("group", group);
 
         return "group :: #spending-body";
     }
@@ -55,6 +56,7 @@ public class SpendingController {
 
         List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
         model.addAttribute("spendings", spendings);
+        model.addAttribute("group", group);
 
         return "group :: #spending-body";
     }

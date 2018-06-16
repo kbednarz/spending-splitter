@@ -14,12 +14,13 @@
                 <hr>
             </div>
         </div>
-        <div class="row" th:if="${isRegistred}">
-            You have been registered.
-            <a class="nav-link active" th:href="@{/login}">You can log in now</a>
-        </div>
+
         <form class="form-horizontal" role="form" method="POST" th:action="@{/register}" th:object="${user}">
             <div class="row">
+                <div class="col-md-6 offset-md-3" th:if="${isRegistred}">
+                    You have been registered.
+                    <a class="nav-link active" th:href="@{/login}">You can log in now</a>
+                </div>
                 <div class="col-md-6 offset-md-3">
                     <div class="form-group has-danger">
                         <label class="sr-only" for="username">Username</label>
@@ -27,7 +28,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                                 <i class="fa fa-at"></i>
                             </div>
-                            <input type="text" name="username" class="form-control" id="username" placeholder="username" th:field="*{username}" required
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Username" th:field="*{username}" required
                                 autofocus>
                         </div>
                     </div>
@@ -35,7 +36,8 @@
                 <div class="col-md-3">
                     <div class="form-control-feedback" th:if="${error}">
                         <span class="text-danger align-middle">
-                            <i class="fa fa-close"></i> <span th:text="${error}"></span>
+                            <i class="fa fa-close"></i>
+                            <span th:text="${error}"></span>
                         </span>
                     </div>
                 </div>
@@ -49,6 +51,19 @@
                                 <i class="fa fa-key"></i>
                             </div>
                             <input type="password" name="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Email</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-envelope-o"></i>
+                            </div>
+                            <input type="text" name="email" class="form-control" id="email" placeholder="E-mail" th:field="*{email}">
                         </div>
                     </div>
                 </div>

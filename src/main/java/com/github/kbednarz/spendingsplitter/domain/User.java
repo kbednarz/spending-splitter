@@ -20,6 +20,8 @@ public class User {
     @JsonIgnore
     private String password;
 
+    private String email;
+
     @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -79,5 +81,13 @@ public class User {
 
     public void addSpending(Spending spending) {
         spendings.add(spending);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -20,6 +20,7 @@ function saveSpending(groupId) {
         }
     }).done(function (response) {
         $('#spending-body').replaceWith(response);
+        updateBalance(groupId);
     }).always(function () {
         amount.val('')
         description.val('')
@@ -33,5 +34,18 @@ function deleteSpending(spendingId) {
         type: "delete",
     }).done(function (response) {
         $('#spending-body').replaceWith(response);
+        updateBalance(groupId);
+    });
+}
+
+function updateBalance(groupId) {
+    $.ajax({
+        url: "/api/spending/balance",
+        type: "get",
+        data: {
+            groupId: groupId
+        }
+    }).done(function (response) {
+        $('#balance').html(response);
     });
 }

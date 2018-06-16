@@ -59,4 +59,11 @@ public class SpendingController {
         return "group :: #spending-body";
     }
 
+    @GetMapping("balance")
+    @ResponseBody
+    public Double getBalance(@RequestParam Long groupId, Principal principal) throws Exception {
+        CommonGroup group = commonGroupRepository.getOne(groupId);
+
+        return spendingService.calculateBalanceForGroupAndUser(group, userService.getUserForPrincipal(principal));
+    }
 }

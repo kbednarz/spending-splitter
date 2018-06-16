@@ -9,6 +9,7 @@ function closeModal(selector) {
 function saveSpending(groupId) {
     var amount = $('#addSpendingModal #amount');
     var description = $('#addSpendingModal #description');
+    var category = $('#addSpendingModal #category');
 
     $.ajax({
         url: "/api/spending",
@@ -16,7 +17,8 @@ function saveSpending(groupId) {
         data: {
             groupId: groupId,
             amount: amount.val(),
-            description: description.val()
+            description: description.val(),
+            category: category.val()
         }
     }).done(function (response) {
         $('#spending-body').replaceWith(response);

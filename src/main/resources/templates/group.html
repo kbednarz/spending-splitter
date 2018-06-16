@@ -36,6 +36,7 @@
                                 <th>Amount</th>
                                 <th>Description</th>
                                 <th>Paid by</th>
+                                <th>Category</th>
                                 <th class="text-right">Action</th>
                             </thead>
 
@@ -45,6 +46,7 @@
                                     <td th:text="${spending.amount}">Amount</td>
                                     <td th:text="${spending.description}">Description</td>
                                     <td th:text="${spending.paidByUser.username}">Paid by</td>
+                                    <td th:text="${spending.category.name}">Category</td>
                                     <td class="text-right">
                                         <i th:onclick="'deleteSpending(\'' + ${group.id} + '\',\'' + ${spending.id} + '\');'" class="fa fa-minus-circle text-danger"></i>
                                         <i class="fa fa-pencil-square"></i>
@@ -75,6 +77,13 @@
                         </div>
                         <div> Description:
                             <input type="text" id="description" class="form-control form-inline">
+                        </div>
+                        <div> Category:
+                            <select type="text" id="category" class="form-control form-inline">
+                                <option value="Grocery">Grocery</option>
+                                <option value="Restaurant">Restaurant</option>
+                                <option value="Holiday">Holiday</option>
+                            </select>
                         </div>
                     </form>
                 </div>

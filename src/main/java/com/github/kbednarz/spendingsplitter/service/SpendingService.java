@@ -1,5 +1,6 @@
 package com.github.kbednarz.spendingsplitter.service;
 
+import com.github.kbednarz.spendingsplitter.domain.Category;
 import com.github.kbednarz.spendingsplitter.domain.CommonGroup;
 import com.github.kbednarz.spendingsplitter.domain.Spending;
 import com.github.kbednarz.spendingsplitter.domain.User;
@@ -47,7 +48,7 @@ public class SpendingService {
         return userBalance;
     }
 
-    public Spending saveSpending(CommonGroup group, User paidByUser, Double amount, String description) {
+    public Spending saveSpending(CommonGroup group, User paidByUser, Double amount, String description, Category category) {
         Spending spending = new Spending();
 
         spending.setAmount(amount);
@@ -55,6 +56,7 @@ public class SpendingService {
         spending.setGroup(group);
         spending.setPaidByUser(paidByUser);
         spending.setDescription(description);
+        spending.setCategory(category);
 
         return spendingRepository.save(spending);
     }

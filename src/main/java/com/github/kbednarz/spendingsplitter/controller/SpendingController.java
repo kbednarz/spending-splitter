@@ -1,10 +1,12 @@
 package com.github.kbednarz.spendingsplitter.controller;
 
+import com.github.kbednarz.spendingsplitter.domain.Category;
 import com.github.kbednarz.spendingsplitter.domain.CommonGroup;
 import com.github.kbednarz.spendingsplitter.domain.Spending;
 import com.github.kbednarz.spendingsplitter.domain.User;
 import com.github.kbednarz.spendingsplitter.repository.CommonGroupRepository;
 import com.github.kbednarz.spendingsplitter.repository.SpendingRepository;
+import com.github.kbednarz.spendingsplitter.service.CategoryService;
 import com.github.kbednarz.spendingsplitter.service.SpendingService;
 import com.github.kbednarz.spendingsplitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +33,18 @@ public class SpendingController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CategoryService categoryService;
+
     @PostMapping
-    public String saveSpending(@RequestParam Long groupId, @RequestParam Double amount,
+    public String saveSpending(@RequestParam Long groupId, @RequestParam Double amount, @RequestParam("category") String categoryName,
                                @RequestParam(required = false) String description, Principal principal, Model model) {
         CommonGroup group = commonGroupRepository.getOne(groupId);
         User paidByUser = userService.getUserForPrincipal(principal);
 
-        spendingService.saveSpending(group, paidByUser, amount, description);
+        Category category = categoryService.findOrCreateCategory(categoryName);
+
+        spendingService.saveSpending(group, paidByUser, amount, description, category);
 
         List<Spending> spendings = spendingRepository.findAllByGroupOrderByDateDesc(group);
         model.addAttribute("spendings", spendings);

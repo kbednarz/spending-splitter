@@ -17,7 +17,7 @@
                 </h2>
                 <p>
                     You belongs to groups:
-                    <span th:each="group: ${userGroups}" th:text="${group.name}">
+                    <span class="badge badge-info mr-1 p-1" th:each="group: ${userGroups}" th:text="${group.name}">
                     </span>
                 </p>
                 <div class="pt-4">
